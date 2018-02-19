@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { SearchBarWrapper } from "./index.style";
 
+import { AddButton } from '../Button'
+
 class SearchBar extends Component {
   state = {
-    keyword: this.props.keyword
+    keyword: this.props.keyword,
+    list: this.props.list
   };
 
   setKeyword = (keyword = "") => {
@@ -22,6 +25,8 @@ class SearchBar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.keyword) {
       this.setKeyword(nextProps.keyword);
+    } else {
+      this.setKeyword();
     }
   }
 
@@ -30,8 +35,13 @@ class SearchBar extends Component {
     return <input value={keyword} onChange={this.handleKeywordChanged} />;
   };
 
+  renderAddButton = () => {
+    const { keyword, list } = this.state;
+    return <AddButton onClick={() => this.props.addList(keyword, list)} />
+  }
+
   render() {
-    return <SearchBarWrapper>{this.renderInput()}</SearchBarWrapper>;
+    return <SearchBarWrapper>{this.renderInput()} {this.renderAddButton()}</SearchBarWrapper>;
   }
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { ButtonWrapper } from "./index.style";
+import { ButtonWrapper, AddButtonWrapper } from "./index.style";
 
-const Button = ({ children, type, onClick }) => {
+export const Button = ({ children, type, onClick }) => {
   const className = classNames(type);
   return (
     <ButtonWrapper
@@ -15,6 +15,12 @@ const Button = ({ children, type, onClick }) => {
   );
 };
 
+export const AddButton = ({ onClick }) => {
+  return (
+    <AddButtonWrapper onClick={onClick}>Add</AddButtonWrapper>
+  )
+}
+
 Button.propTypes = {
   type: PropTypes.string,
 };
@@ -22,5 +28,3 @@ Button.propTypes = {
 Button.defaultProps = {
   type: "default",
 };
-
-export default Button;

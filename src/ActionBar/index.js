@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { ActionBarWrapper } from './index.style'
 
-import Button from '../Button'
+import { Button } from '../Button'
 
 class ActionBar extends Component {
 

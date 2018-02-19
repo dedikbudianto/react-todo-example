@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { handleAddList } from '../redux/action/todoAction';
 
 import { TodoWrapper } from './index.style'
 
@@ -16,9 +19,7 @@ class Todo extends Component {
   }
 
   renderSearchBar = keyword => {
-    return (
-      <SearchBar keyword={keyword} keywordChanged={this.updateKeyward} />
-    )
+    return <SearchBar keyword={keyword} keywordChanged={this.updateKeyward} addList={this.props.handleAddList} list={this.state.list}/>
   }
 
   renderTodoList = (list, showType, keyword) => {
@@ -78,8 +79,8 @@ class Todo extends Component {
   }
 
   render() {
-    const { keyword, showType, list } = this.state
-    const { width } = this.props
+    const { keyword, showType } = this.state
+    const { width, list } = this.props
     return (
       <TodoWrapper width={width}>
         {this.renderSearchBar(keyword)}
@@ -104,4 +105,16 @@ Todo.defaultProps = {
   width: '300px'
 }
 
-export default Todo
+const mapStateToProps = (state) => {
+  return {
+    list: state.list
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    handleAddList: handleAddList
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);

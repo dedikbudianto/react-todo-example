@@ -20,3 +20,12 @@ export const ButtonWrapper = styled.button`
     background-color: lightgreen;
   }
 `;
+
+export const AddButtonWrapper = styled.button`
+  float: right;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: lightgreen;
+  border: none;
+  border-radius: 4px;
+`
