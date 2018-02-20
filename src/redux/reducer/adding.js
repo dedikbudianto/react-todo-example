@@ -5,8 +5,7 @@ const initialState = {
     { id: 1, content: "eating breakfast ⏰", status: "completed" },
     { id: 2, content: "eating lunch ⏰", status: "incompleted" },
     { id: 3, content: "eating dinner ⏰", status: "incompleted" }
-  ],
-  keyword: ''
+  ]
 }
 
 export default function adding(state = initialState, action) {
@@ -16,7 +15,7 @@ export default function adding(state = initialState, action) {
         ...state,
         list: state.list.concat({
           id: state.list.length + 1,
-          content: action.keyword,
+          content: action.keyword + ' ⏰',
           status: 'incompleted'
         })
       }

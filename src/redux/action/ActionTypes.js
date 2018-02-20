@@ -3,3 +3,6 @@ export const SHOW_COMPLETED = 'SHOW_COMPLETED';
 export const SHOW_INCOMPLETED = 'SHOW_INCOMPLETED';
 
 export const ADD_LIST = 'ADD_LIST';
+
+export const UPDATE_SHOW_TYPE = 'UPDATE_SHOW_TYPE';
+export const UPDATE_KEYWORD = 'UPDATE_KEYWORD';

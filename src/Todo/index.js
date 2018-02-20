@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handleAddList } from '../redux/action/todoAction';
+import { handleAddList, updateKeyword, updateShowType } from '../redux/action/todoAction';
 
 import { TodoWrapper } from './index.style'
 
@@ -19,7 +19,7 @@ class Todo extends Component {
   }
 
   renderSearchBar = keyword => {
-    return <SearchBar keyword={keyword} keywordChanged={this.updateKeyward} addList={this.props.handleAddList} list={this.state.list}/>
+    return <SearchBar keyword={keyword} keywordChanged={this.props.updateKeyword} addList={this.props.handleAddList} list={this.state.list}/>
   }
 
   renderTodoList = (list, showType, keyword) => {
@@ -49,7 +49,7 @@ class Todo extends Component {
   }
 
   renderActionBar = type => {
-    return <ActionBar type={type} onChange={this.updateShowType} />
+    return <ActionBar type={type} onChange={this.props.updateShowType} />
   }
 
   renderItem = item => (
@@ -57,30 +57,29 @@ class Todo extends Component {
       key={item.id}
       status={item.status}
       onClick={() => this.handleItemClicked(item.id)}
-      keyword={this.state.keyword}>
+      keyword={this.props.keyword}>
       {item.content}
     </Item>
   )
 
   handleItemClicked = id => {
-    const { list } = this.state
+    const { list } = this.props
     let clickedItem = list.find(item => item.id === id)
     let itemStatus = clickedItem.status
     clickedItem.status = itemStatus === 'completed' ? 'incompleted' : 'completed'
     this.setState({ list })
   }
 
-  updateKeyward = keyword => {
-    this.setState(() => ({ keyword }))
-  }
-
-  updateShowType = showType => {
-    this.setState(() => ({ showType }))
-  }
+  // updateKeyward = keyword => {
+  //   this.setState(() => ({ keyword }))
+  // }
+  //
+  // updateShowType = showType => {
+  //   this.setState(() => ({ showType }))
+  // }
 
   render() {
-    const { keyword, showType } = this.state
-    const { width, list } = this.props
+    const { keyword, showType, width, list } = this.props
     return (
       <TodoWrapper width={width}>
         {this.renderSearchBar(keyword)}
@@ -107,13 +106,17 @@ Todo.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    list: state.list
+    list: state.adding.list,
+    showType: state.updating.showType,
+    keyword: state.updating.keyword
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    handleAddList: handleAddList
+    handleAddList: handleAddList,
+    updateKeyword: updateKeyword,
+    updateShowType: updateShowType
   }, dispatch)
 }
 

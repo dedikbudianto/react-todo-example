@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 
 import { Provider }  from 'react-redux';
 import { createStore } from 'redux';
-import adding from './redux/reducer/adding';
+import reducer from './redux/reducer';
 
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(adding);
+const store = createStore(reducer);
 
 console.log(store.getState());
 
