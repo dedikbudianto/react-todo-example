@@ -11,8 +11,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer);
 
-console.log(store.getState());
-
 const TodoApp = () => (
   <Provider store={store}>
     <App />

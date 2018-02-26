@@ -17,7 +17,8 @@ export default function adding(state = initialState, action) {
           id: state.list.length + 1,
           content: action.keyword + ' ⏰',
           status: 'incompleted'
-        })
+        }),
+        keyword: ''
       }
 
     default:

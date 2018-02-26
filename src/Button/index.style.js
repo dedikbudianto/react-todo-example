@@ -23,6 +23,7 @@ export const ButtonWrapper = styled.button`
 
 export const AddButtonWrapper = styled.button`
   float: right;
+  margin-top: -10px;
   padding: 8px 16px;
   color: #fff;
   background-color: lightgreen;

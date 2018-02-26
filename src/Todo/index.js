@@ -12,14 +12,12 @@ import ActionBar from '../ActionBar'
 
 class Todo extends Component {
 
-  state = {
-    keyword: '',
-    list: this.props.list,
-    showType: this.props.showType,
-  }
-
   renderSearchBar = keyword => {
-    return <SearchBar keyword={keyword} keywordChanged={this.props.updateKeyword} addList={this.props.handleAddList} list={this.state.list}/>
+    return <SearchBar
+      keyword={keyword}
+      addList={this.props.handleAddList}
+      updateKeyword={this.props.updateKeyword}
+    />
   }
 
   renderTodoList = (list, showType, keyword) => {
@@ -70,16 +68,8 @@ class Todo extends Component {
     this.setState({ list })
   }
 
-  // updateKeyward = keyword => {
-  //   this.setState(() => ({ keyword }))
-  // }
-  //
-  // updateShowType = showType => {
-  //   this.setState(() => ({ showType }))
-  // }
-
   render() {
-    const { keyword, showType, width, list } = this.props
+    const { keyword, showType, width, list } = this.props;
     return (
       <TodoWrapper width={width}>
         {this.renderSearchBar(keyword)}
